@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+  </head>
+  <body class="bg-gray-700">
+    <div class="w-full max-w-2xl mx-auto p-6">
+      <h1 class="text-2xl font-bold text-white">Todo List</h1>
+
+      <div class="my-2">
+        <form
+          class="w-full"
+          hx-post="/add-todo/"
+          hx-swap="beforehand"
+          hx-target="#todo-list"
+          hx-indicator="#spinner"
+        >
+          <div class="flex w-full space-x-2 mb-10">
+            <input
+              type="text"
+              name="title"
+              id="todo-title"
+              class="border-gray-200 border-2 rounded px-2 w-full"
+            />
+            <button type="submit" class="bg-purple-500 text-white rounded p-2">
+              <span
+                class="spinner-border spinner-border-sm htmx-indicator"
+                id="spinner"
+                role="status"
+                aria-hidden="true"
+              ></span>
+
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!--  List -->
+      <div id="todo-list" class="space-y-3 text-white">
+        {{ block "todo-items" . }} {{ range .Todos}}
+        <div
+          class="w-full border border-purple-400 rounded px-6 py-4 flex justify-between"
+        >
+          <h2>{{.Title}}</h2>
+          <input type="checkbox" checked="{{.Done}}" />
+        </div>
+        {{end}} {{end}}
+      </div>
+
+      <!-- Add todo form -->
+    </div>
+  </body>
+</html>
