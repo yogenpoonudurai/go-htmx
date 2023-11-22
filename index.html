@@ -17,7 +17,6 @@
           hx-post="/add-todo/"
           hx-swap="beforehand"
           hx-target="#todo-list"
-          hx-indicator="#spinner"
         >
           <div class="flex w-full space-x-2 mb-10">
             <input
@@ -27,13 +26,6 @@
               class="border-gray-200 border-2 rounded px-2 w-full"
             />
             <button type="submit" class="bg-purple-500 text-white rounded p-2">
-              <span
-                class="spinner-border spinner-border-sm htmx-indicator"
-                id="spinner"
-                role="status"
-                aria-hidden="true"
-              ></span>
-
               Submit
             </button>
           </div>
